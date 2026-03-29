@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
+import "../styles/SneakerPage.css"
 
-function SneakerPage() {
+function SneakerPage({deletedSneaker}) {
     const params = useParams()
+    const navigate = useNavigate()
     const { id } = params;
 
     const [sneaker, setSneaker] = useState({});
@@ -28,23 +30,26 @@ function SneakerPage() {
             method: "DELETE"
         })
         console.log("successfully deleted")
-        window.location = '/'
+        deletedSneaker(sneaker)
+        navigate("/")
+    }
+
+    function handleEdit() {
+        navigate(`/sneakers/${id}/edit`)
     }
 
     return (
-        <div>
+        <div className="sneaker-page-container">
             <h1>{sneaker.name}</h1>
-            <div>
+            <div className="sneaker-info-container">
                 <span>Primary color: {sneaker.color_primary}</span>
                 <span>Secondary color: {sneaker.color_secondary}</span>
-                <span>Lace color: {sneaker.lace_color}</span>
-                <span>Sole color: {sneaker.sole_color}</span>
                 <span>Size: {sneaker.size}</span>
-                <span>Price: {sneaker.price}</span>
+                <span>Price: ${sneaker.price}</span>
                 <span>Material: {sneaker.material}</span>
             </div>
-            <div>
-                <button>edit</button>
+            <div className="buttons-container">
+                <button onClick={handleEdit}>edit</button>
                 <button onClick={handleDelete}>delete</button>
             </div>
         </div>

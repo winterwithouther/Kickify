@@ -1,0 +1,19 @@
+.sneaker-display-container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    margin: 50px;
+    align-items: center;
+    font-size: 2rem;
+    justify-content: space-between;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid white;
+    transition: .5s ease;
+}
+
+.sneaker-display-container:hover {
+    margin: 2rem;
+    cursor: pointer;
+}

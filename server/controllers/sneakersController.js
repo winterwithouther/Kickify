@@ -20,9 +20,10 @@ async function getSneaker(request, response) {
     }
 }
 
+// POST
 async function createSneaker(request, response) {
     try {
-        const { name, size, price, color_primary, color_secondary, sole_color, material, lace_color, submittedBy, submittedOn } = request.body
+        const { name, size, price, color_primary, color_secondary, material, submittedBy, submittedOn } = request.body
 
         const values = [
             name,
@@ -30,16 +31,14 @@ async function createSneaker(request, response) {
             price,
             color_primary,
             color_secondary,
-            sole_color,
             material,
-            lace_color,
             submittedBy,
             submittedOn
         ];
 
         const results = await pool.query(`
-        INSERT INTO sneakers (name, size, price, color_primary, color_secondary, sole_color, material, lace_color, submittedBy, submittedOn)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+        INSERT INTO sneakers (name, size, price, color_primary, color_secondary, material, submittedBy, submittedOn)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING *
         `, values)
 
@@ -62,9 +61,23 @@ async function deleteSneaker(request, response) {
     }
 }
 
+// UPDATE
+async function updateSneaker(request, response) {
+    const id = parseInt(request.params.id)
+    const { name, size, price, color_primary, color_secondary, material, submittedBy, submittedOn } = request.body
+    try {
+        const query = `UPDATE sneakers SET name = $1, size = $2, price = $3, color_primary = $4, color_secondary = $5, material = $6 WHERE id = $7 RETURNING *`
+        const results = await pool.query(query, [name, size, price, color_primary, color_secondary, material, id])
+        response.status(200).json(results.rows[0])
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export default {
     getSneakers,
     createSneaker,
     getSneaker,
-    deleteSneaker
+    deleteSneaker,
+    updateSneaker
 }

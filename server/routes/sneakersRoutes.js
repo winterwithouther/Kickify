@@ -17,4 +17,7 @@ router.post("/", sneakersController.createSneaker)
 // DELETE
 router.delete("/:id", sneakersController.deleteSneaker)
 
+// UPDATE
+router.patch("/:id", sneakersController.updateSneaker)
+
 export default router

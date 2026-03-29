@@ -10,10 +10,7 @@ async function createSneakersTable() {
 
       color_primary VARCHAR(50),
       color_secondary VARCHAR(50),
-      sole_color VARCHAR(50),
-
       material VARCHAR(50),
-      lace_color VARCHAR(50),
 
       submittedBy VARCHAR(255) NOT NULL,
       submittedOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP

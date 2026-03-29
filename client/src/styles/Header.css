@@ -1,0 +1,27 @@
+.header-container {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgb(66, 66, 66);
+}
+
+.add-sneaker {
+    background-color: rgb(20, 12, 22);
+    border: 0.5px solid white;
+    padding: 30px;
+    border-radius: 10px;
+    transition: 0.2s ease;
+    text-decoration: none;
+    color: white;
+}
+
+.add-sneaker:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+}
+
