@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import SneakerCard from "../components/SneakerCard.jsx"
 
-function Home() {
-    const [sneakers, setSneakers] = useState([])
+function Home(props) {
+    const { sneakers } = props
 
-    useEffect(() => {
-        async function getSneakers() {
-            const response = await fetch("http://localhost:3000/sneakers")
-            const data = await response.json()
-            console.log(data)
-        }
-
-        getSneakers()
-    }, [])    
-        
     return (
         <div className="homepage-container">
-            <h1>HOME</h1>
+            {sneakers.map((sneaker) => (
+                <SneakerCard key={sneaker.id} sneaker={sneaker}/>
+            ))}
         </div>
     )
 }

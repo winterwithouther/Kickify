@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import sneakerRouter from "./routes/sneakers.js"
+import sneakerRouter from "./routes/sneakersRoutes.js"
 
 const app = express()
 const PORT = 3000;
@@ -11,7 +11,6 @@ app.use(express.json())
 app.get('/', (req, res) => {
   res.send('Kickify API is running')
 });
-
 // routes
 app.use('/sneakers', sneakerRouter)
 

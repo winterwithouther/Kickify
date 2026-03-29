@@ -8,8 +8,13 @@ const router = express.Router()
 // GET /sneakers
 router.get("/", sneakersController.getSneakers)
 
+// GET /sneakers/:id
+router.get("/:id", sneakersController.getSneaker)
+
 // POST
 router.post("/", sneakersController.createSneaker)
 
+// DELETE
+router.delete("/:id", sneakersController.deleteSneaker)
 
-export default Router
+export default router
